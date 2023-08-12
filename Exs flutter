@@ -153,3 +153,28 @@ void main() {
 
   print(soma);
 }
+////////////////////////////////////////////////////////////
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    title: "Frase do Dia",
+    home: Container(
+      margin: EdgeInsets.only(top:50),
+      padding: EdgeInsets.only(top: 50),
+      decoration: BoxDecoration(
+        border: Border.all(width: 3, color: Colors.white)
+      ),
+      child: Column(
+        children: [
+          Text("T1"),
+          Text("T2"),
+          Text("T3"),
+        ],
+      ),
+    ),
+  ));
+}
+
+
+
