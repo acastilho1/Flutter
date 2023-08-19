@@ -44,5 +44,43 @@ void main() {
   ));
 
 }
+----------------------------------------------------------------------
 
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    title: "Frases do Dia",
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text("Titulo"),
+        backgroundColor: Colors.green,
+      ),
+
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Text("Conteudo principal"),
+      ),
+
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.lightGreen,
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Text("Texto1"),
+              Text("Texto2")
+            ],
+          ),
+
+        ),
+      ),
+    ),
+
+    ),
+
+  );
+
+}
 
