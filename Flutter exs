@@ -38,6 +38,8 @@ void main() {
 
         ],
 
+
+
       ),
     ),
 
@@ -52,7 +54,52 @@ void main() {
   runApp(MaterialApp(
     title: "Frases do Dia",
     debugShowCheckedModeBanner: false,
-    home: Scaffold(
+    home:HomeStatefull()
+  ));
+}
+
+class HomeStatefull extends StatefulWidget{
+  const HomeStatefull({Key? key}) : super(key: key);
+
+  @override
+  State<HomeStatefull> createState() => _HomeStatefullState();
+
+}
+class _HomeStatefullState extends State<HomeStatefull>{
+  var _text = "Senai";
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Titulo"),
+        backgroundColor: Colors.green,
+      ),
+      body: Container(
+        child: Column(
+          children: [ElevatedButton(
+            onPressed: (){
+              setState((){
+            _text = "Curso Flutter";
+              });
+            },
+            child: Text("clique aqui")),
+          Text("Nome $_text")
+
+        ],
+        ),
+      ),
+    );
+  }
+}
+
+class Home extends StatelessWidget{
+  const Home ({Key? key}) : super (key: key);
+
+  @override
+
+  Widget build(BuildContext context){
+    var _titulo = "Titulo";
+    return Scaffold(
       appBar: AppBar(
         title: Text("Titulo"),
         backgroundColor: Colors.green,
@@ -76,11 +123,9 @@ void main() {
 
         ),
       ),
-    ),
-
-    ),
-
-  );
-
+    );
+  }
 }
+
+---------------------------------------------------------------------
 
