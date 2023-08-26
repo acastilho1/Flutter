@@ -100,5 +100,133 @@ class _TelaSecundariaState extends State<TelaSecundaria> {
     );
   }
 }
+////////////////////////////////////////////////////////////////////////////
+import 'package:flutter/material.dart';
+import 'dart:math';
 
+void main() {
+  runApp(CaraOuCoroaApp());
+}
+
+class CaraOuCoroaApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Cara ou Coroa',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: EscolhaPagina(),
+    );
+  }
+}
+
+class EscolhaPagina extends StatefulWidget {
+  @override
+  _EscolhaPaginaState createState() => _EscolhaPaginaState();
+}
+
+class _EscolhaPaginaState extends State<EscolhaPagina> {
+  String escolhaUsuario = 'cara';
+  bool resultadoExibido = false;
+
+  void atualizarEscolha(String escolha) {
+    setState(() {
+      escolhaUsuario = escolha;
+    });
+  }
+
+  void jogar() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResultadoPagina(escolhaUsuario),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Escolha Cara ou Coroa'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Escolha:'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Radio(
+                  value: 'cara',
+                  groupValue: escolhaUsuario,
+                  onChanged: (escolha) => atualizarEscolha(escolha as String),
+                ),
+                Text('Cara'),
+                Radio(
+                  value: 'coroa',
+                  groupValue: escolhaUsuario,
+                  onChanged: (escolha) => atualizarEscolha(escolha as String),
+                ),
+                Text('Coroa'),
+              ],
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                jogar();
+              },
+              child: Text('Jogar'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ResultadoPagina extends StatelessWidget {
+  final String escolhaUsuario;
+
+  ResultadoPagina(this.escolhaUsuario);
+
+  String _obterResultadoAleatorio() {
+    Random random = Random();
+    return random.nextBool() ? 'cara' : 'coroa';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    String resultado = _obterResultadoAleatorio();
+    bool usuarioVenceu = escolhaUsuario == resultado;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Resultado'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              'imagem/$resultado.png',
+              width: 100,
+              height: 100,
+            ),
+            SizedBox(height: 20),
+            Text(
+              usuarioVenceu ? 'Parabéns! Você ganhou!' : 'Você perdeu. Tente novamente!',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
